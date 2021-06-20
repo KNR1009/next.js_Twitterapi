@@ -4,17 +4,22 @@ import { useEffect, useState } from "react";
 export default function IndexPage() {
   const [tweets, setTweets] = useState([]);
 
-  useEffect(async () => {
-    if (tweets.length) {
-      return;
-    }
+  useEffect(() => {
+    const f = async () => {
+      if (tweets.length) {
+        return;
+      }
 
-    const q = "Progate";
-    const { data } = await axios.get(`/api/tweets?q=${encodeURIComponent(q)}`);
+      const q = "プログラミング";
+      const { data } = await axios.get(
+        `/api/tweets?q=${encodeURIComponent(q)}`
+      );
 
-    if (data.length) {
-      setTweets(data);
-    }
+      if (data.length) {
+        setTweets(data);
+      }
+    };
+    f();
   }, [tweets]);
 
   return (
