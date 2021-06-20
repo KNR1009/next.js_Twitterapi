@@ -9,7 +9,7 @@ export default function IndexPage() {
       return;
     }
 
-    const q = "プログラミング";
+    const q = "Progate";
     const { data } = await axios.get(`/api/tweets?q=${encodeURIComponent(q)}`);
 
     if (data.length) {
