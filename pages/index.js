@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import fetch from "node-fetch";
 
 export default function IndexPage() {
   const [tweets, setTweets] = useState([]);
@@ -10,14 +10,14 @@ export default function IndexPage() {
         return;
       }
 
-      const q = "プログラミング";
-      const { data } = await axios.get(
-        `/api/tweets?q=${encodeURIComponent(q)}`
+      const q = "すたば";
+      const res = await fetch(`/api/tweets?q=${encodeURIComponent(q)}`).then(
+        (res) => {
+          return res.json();
+        }
       );
 
-      if (data.length) {
-        setTweets(data);
-      }
+      setTweets(res);
     };
     f();
   }, [tweets]);
