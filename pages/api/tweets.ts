@@ -20,8 +20,8 @@ export default async (req, res) => {
   const data = await (() => {
     return new Promise((resolve, reject) => {
       client.get(
-        "search/tweets",
-        { q, count: 100 },
+        "https://api.twitter.com/1.1/search/tweets.json",
+        { q, count: 50 },
         function (error, tweets, response) {
           resolve(tweets);
         }
